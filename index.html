@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="time" style="text-align: center;">Enter your name</h1>
+    <h2 style="text-align: center;">
+        <input type="text" id="name">
+        <input type="button" value="Sign in" onclick="sign_in()">
+        <input type="button" value="Create CM" onclick="createContactManager()">
+    </h2>
+    <h3 id="sign_in" style="text-align: center;">
+        
+    </h3>
+    <div style="text-align: center; display: none; margin-bottom: 18px;" id="block_addContact">
+        <input type="text" value="Write a name" id="newContact_name">
+        <input type="text" value="Write a number" id="newContact_number">
+         <input type="button" value="Add contact" onclick="addContact()" id="createContact"> <p style="display: none;" id="text_successCreated">Contact successfully created</p>
+    </div>
+    <div style="text-align: center; display: none;" id="block_showContact">
+        <input type="button" value="Show contacts" id="button_showContacts" onclick="showContact()" style="margin-bottom: 5px;">
+        <div style="margin-top: 5px; display: grid; grid-template-columns: repeat(3,1fr);">
+            <div></div>
+            <div id="text_yourContacts" style="display: grid;"></div>
+        </div>
+    </div>
+        <script src="./example.js"></script> 
+</body>
+</html>
