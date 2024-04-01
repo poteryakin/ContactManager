@@ -126,7 +126,7 @@ class ContactManager {
     showContact() {
         let str = '';
         for (let i = 0; i < this.contacts.length; i++) {
-            str = str + `${i+1}. Name: ${this.contacts[i].name}, Number: ${this.contacts[i].number};\n`;
+            str = str + `${i+1}. Name: ${this.contacts[i].name}, Number: ${this.contacts[i].number};<br>`;
         }
         return str;
     }
@@ -156,6 +156,9 @@ const block_addContact = document.getElementById("block_addContact");
 const text_successCreated = document.getElementById("text_successCreated");
 const text_yourContacts = document.getElementById("text_yourContacts");
 const block_showContact = document.getElementById("block_showContact");
+const enter_name = document.getElementById("enter_name");
+const sign_in_text = document.getElementById("sign_in_text");
+const sign_out_text = document.getElementById("sign_out");
 
 
 function createContactManager() {
@@ -164,6 +167,7 @@ function createContactManager() {
     block_addContact.style.display = "none";
     text_successCreated.style.display = "none";
     block_showContact.style.display = "none";
+    text_hello.style.display = "";
 }
 
 function sign_in() {
@@ -180,6 +184,10 @@ function sign_in() {
         block_showContact.style.display = "";
         text_successCreated.style.display = "none";
         text_yourContacts.style.display = "none";
+        enter_name.style.display = "none";
+        sign_in_text.style.display = "none";
+        sign_out_text.style.display = "";
+        text_hello.style.display = "";
     }
     else {
         text_hello.innerHTML = 'CM not found';
@@ -210,9 +218,14 @@ function showContact() {
     }
 }
 
-
-
-
-
-
+function sign_out() {
+        block_addContact.style.display = "none";
+        block_showContact.style.display = "none";
+        text_yourContacts.style.display = "none";
+        text_successCreated.style.display = "none";
+        enter_name.style.display = "";
+        sign_in_text.style.display = "";
+        text_hello.style.display = "none";
+        sign_out_text.style.display = "none";
+}
 
