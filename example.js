@@ -130,6 +130,10 @@ class ContactManager {
         }
         return str;
     }
+
+    deleteContact(i) {
+        this.contacts.splice(i-1,1);
+    }
 }
 
 
@@ -159,6 +163,8 @@ const block_showContact = document.getElementById("block_showContact");
 const enter_name = document.getElementById("enter_name");
 const sign_in_text = document.getElementById("sign_in_text");
 const sign_out_text = document.getElementById("sign_out");
+const nameContact = document.getElementById("nameContact");
+const text_delete = document.getElementById("text_delete");
 
 
 function createContactManager() {
@@ -215,6 +221,7 @@ function showContact() {
         newCM.contacts = JSON.parse(localStorage.getItem(newName.value)).contacts;
         text_yourContacts.innerHTML = newCM.showContact();
         text_yourContacts.style.display = "";
+        text_delete.style.display = "none";
     }
 }
 
@@ -227,6 +234,23 @@ function sign_out() {
         sign_in_text.style.display = "";
         text_hello.style.display = "none";
         sign_out_text.style.display = "none";
+}
+
+function deleteContacts() {
+    if (JSON.parse(localStorage.getItem(newName.value)).name == newName.value) {
+        if (JSON.parse(localStorage.getItem(newName.value)).contacts.length == 0) {
+            text_delete.innerHTML = 'Сontacts are empty';
+            text_delete.style.display = "";
+        }
+        else {
+            let newCM = new ContactManager(JSON.parse(localStorage.getItem(newName.value)).name);
+            newCM.contacts = JSON.parse(localStorage.getItem(newName.value)).contacts;
+            newCM.deleteContact(+(nameContact.value));
+            localStorage.setItem(newName.value, JSON.stringify(newCM));
+            text_delete.innerHTML = 'Successfully deleted';
+            text_delete.style.display = "";
+        }
+    }
 }
 
 function replacer(el) {
