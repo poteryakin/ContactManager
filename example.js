@@ -229,3 +229,7 @@ function sign_out() {
         sign_out_text.style.display = "none";
 }
 
+function replacer(el) {
+    el.value = el.value.replace(/[^+\d]/g, ''); 
+}
+
