@@ -3,39 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Contact Manager</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 id="enter_name" style="text-align: center;">Enter your name</h1>
-    <h2 style="text-align: center;" id="sign_in_text">
-        <input type="text" id="name">
-        <input type="button" value="Sign in" onclick="sign_in()">
-        <input type="button" value="Create CM" onclick="createContactManager()">
-    </h2>
-    <h2 style="text-align: center; display: none;" id="sign_out">
-        <input type="button" value="Sign out" onclick="sign_out()">
-    </h2>
-    <h3 id="sign_in" style="text-align: center;">
+    <h1 id="enter_name">Welcome to the contact manager</h1>
+    <form class="form">
+        <label id="label-text">Enter your name</label>
+        <div id="sign_in_text">
+            <input type="text" id="name">
+            <input type="button" value="Sign in" onclick="sign_in()">
+            <input type="button" value="Create CM" onclick="createContactManager()">
+        </div>
+        <div id="sign_out">
+            <input type="button" value="Sign out" onclick="sign_out()">
+        </div>
+        <div id="sign_in">
+            
+        </div>
+        <div id="block_addContact">
+            <input type="text" placeholder="Write a name" id="newContact_name">
+            <input type="text" placeholder="Write a number" id="newContact_number" oninput="replacer(this)">
+            <input type="button" style="margin-top: 5px;" value="Add the similar" onclick="addSimilar()" id="similar">
+            <input type="button" style="margin-top: 5px;" value="Refresh" onclick="refresh()">
+            <input style="margin-top: 5px;" type="button" value="Add contact" onclick="addContact()" id="createContact"> <p style="display: none;" id="text_successCreated">Contact successfully created</p>
+        </div>
+        <table id="table">
         
-    </h3>
-    <div style="text-align: center; display: none; margin-bottom: 18px;" id="block_addContact">
-        <input type="text" placeholder="Write a name" id="newContact_name">
-        <input type="text" placeholder="Write a number" id="newContact_number" oninput="replacer(this)">
-         <input type="button" value="Add contact" onclick="addContact()" id="createContact"> <p style="display: none;" id="text_successCreated">Contact successfully created</p>
-    </div>
-    <div style="text-align: center; display: none;" id="block_showContact">
-        <div style="text-align: center; margin-bottom: 8px;">
-            <input type="text" placeholder="Serial number" id="nameContact" style="width: 92px;" oninput="replacer(this)">
-            <input type="button" value="Delete contacts" onclick="deleteContacts()">
-            <h3 id="text_delete" style="text-align: center;"></h3>
+        </table>
+        <div id="block_showContact">
+            <div style="text-align: center; margin-bottom: 8px;">
+                <input type="text" placeholder="Serial number" id="nameContact" style="width: 92px;" oninput="replacer(this)">
+                <input type="button" value="Delete contacts" onclick="deleteContacts()">
+                <h3 id="text_delete" style="text-align: center;"></h3>
+            </div>
+            <input type="button" value="Show contacts" id="button_showContacts" onclick="showContact()" style="margin-bottom: 5px;">
+            <div class="yourContacts">
+                <div></div>
+                <ul id="text_yourContacts" style="display: grid;"></ul>
+            </div>
         </div>
-        <input type="button" value="Show contacts" id="button_showContacts" onclick="showContact()" style="margin-bottom: 5px;">
-        <div style="margin-top: 5px; display: grid; grid-template-columns: repeat(3,1fr);">
-            <div></div>
-            <ul id="text_yourContacts" style="display: grid;"></ul>
-        </div>
-    </div>
-        <script src="./example.js"></script> 
+            <script src="./CM.js"></script> 
+    </form>
 </body>
 </html>
