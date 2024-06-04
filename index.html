@@ -7,32 +7,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 id="enter_name">Welcome to the contact manager</h1>
+    <h1 class="enter_name">Welcome to the contact manager</h1>
     <form class="form">
-        <label id="label-text">Enter your name</label>
-        <div id="sign_in_text">
-            <input type="text" id="name">
+        <label id="label-text" class="label">Enter your name</label>
+        <div id="sign_in_text" class="sign_in_hello">
+            <input type="text" id="name" class="name_cm">
             <input type="button" value="Sign in" onclick="sign_in()">
             <input type="button" value="Create CM" onclick="createContactManager()">
         </div>
-        <div id="sign_out">
+        <div id="sign_out" class="exit">
             <input type="button" value="Sign out" onclick="sign_out()">
         </div>
-        <div id="sign_in">
+        <div id="sign_in" class="welcome">
             
         </div>
-        <div id="block_addContact">
+        <div id="block_addContact" class="addContact">
             <input type="text" placeholder="Write a name" id="newContact_name">
             <input type="text" placeholder="Write a number" id="newContact_number" oninput="replacer(this)">
             <input type="button" style="margin-top: 5px;" value="Add the similar" onclick="addSimilar()" id="similar">
             <input type="button" style="margin-top: 5px;" value="Refresh" onclick="refresh()">
             <input style="margin-top: 5px;" type="button" value="Add contact" onclick="addContact()" id="createContact"> <p style="display: none;" id="text_successCreated">Contact successfully created</p>
         </div>
-        <table id="table">
+        <table id="table" class="style_table">
         
         </table>
-        <div id="block_showContact">
-            <div style="text-align: center; margin-bottom: 8px;">
+        <div id="block_showContact" class="showContact">
+            <div class="deleteContact">
                 <input type="text" placeholder="Serial number" id="nameContact" style="width: 92px;" oninput="replacer(this)">
                 <input type="button" value="Delete contacts" onclick="deleteContacts()">
                 <h3 id="text_delete" style="text-align: center;"></h3>
