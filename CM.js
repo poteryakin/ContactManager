@@ -19,7 +19,7 @@ class ContactManager {
     showContact() {
         let str = '';
         for (let i = 0; i < this.contacts.length; i++) {
-            str = str + `${i+1}. Name: ${this.contacts[i].name}, Number: ${this.contacts[i].number};<br>`;
+            str = str + `${i+1}. Name: ${this.contacts[i].name}, Number: ${this.contacts[i].number};\n`;
         }
         return str;
     }
@@ -47,44 +47,32 @@ const nameContact = document.getElementById("nameContact");
 const text_delete = document.getElementById("text_delete");
 const table = document.getElementById("table");
 const similar = document.getElementById("similar");
+const main_info = document.getElementById("main_info");
 
 
 
 function createContactManager() {
     localStorage.setItem(newName.value, JSON.stringify(new ContactManager(newName.value)));
-    text_hello.innerHTML = 'Successfully created';
-    block_addContact.style.display = "none";
-    text_successCreated.style.display = "none";
-    block_showContact.style.display = "none";
+    text_hello.textContent = 'Successfully created';
+    display_off([block_addContact, text_successCreated, block_showContact]);
     text_hello.style.display = "";
 }
 
 function sign_in() {
     const name_cm = JSON.parse(localStorage.getItem(newName.value));
     if (name_cm === null) {
-        text_hello.innerHTML = 'CM not found';
-        block_addContact.style.display = "none";
-        block_showContact.style.display = "none";
-        text_yourContacts.style.display = "none";
-        text_hello.style.display = "";
+        text_hello.textContent = 'CM not found';
+        display_off([block_addContact, block_showContact, text_yourContacts]);
         return;
     }
     if (name_cm.name == newName.value) {
-        text_hello.innerHTML = 'Hello, ' + newName.value;
-        block_addContact.style.display = "block";
-        block_showContact.style.display = "block";
-        text_successCreated.style.display = "none";
-        text_yourContacts.style.display = "none";
-        enter_name.style.display = "none";
-        sign_in_text.style.display = "none";
-        sign_out_text.style.display = "block";
-        text_hello.style.display = "";
+         text_hello.textContent = 'Hello, ' + newName.value;
+         display_off([sign_in_text, text_yourContacts]);
+        display_on([block_addContact, block_showContact, sign_out_text, text_hello]);
     }
     else {
-        text_hello.innerHTML = 'CM not found';
-        block_addContact.style.display = "none";
-        block_showContact.style.display = "none";
-        text_yourContacts.style.display = "none";
+        text_hello.textContent = 'CM not found';
+        display_off([block_addContact, block_showContact, text_yourContacts]);
     }
     
 }
@@ -106,23 +94,16 @@ function showContact() {
     if (name_cm.name == newName.value) {
         let newCM = new ContactManager(name_cm.name);
         newCM.contacts = name_cm.contacts;
-        text_yourContacts.innerHTML = newCM.showContact();
-        text_yourContacts.style.display = "";
-        text_delete.style.display = "none";
+        text_yourContacts.innerText = newCM.showContact();
+        display_on([text_yourContacts]);
+        display_off([text_delete]);
     }
 }
 
 function sign_out() {
-        block_addContact.style.display = "none";
-        block_showContact.style.display = "none";
-        text_yourContacts.style.display = "none";
-        text_successCreated.style.display = "none";
-        enter_name.style.display = "";
-        sign_in_text.style.display = "";
-        text_hello.style.display = "none";
-        sign_out_text.style.display = "none";
-        table.style.display = "none";
-        table.innerHTML = "";
+        display_off([block_addContact, block_showContact, text_yourContacts, text_successCreated, text_hello, sign_out_text, table]);
+         display_on([sign_in_text]);
+        table.textContent = "";
         similar.removeAttribute('disabled');
         
 }
@@ -131,16 +112,16 @@ function deleteContacts() {
     const name_cm = JSON.parse(localStorage.getItem(newName.value));
     if (name_cm.name == newName.value) {
         if (name_cm.contacts.length == 0) {
-            text_delete.innerHTML = 'Сontacts are empty';
-            text_delete.style.display = "";
+            text_delete.textContent = 'Сontacts are empty';
+            display_on([text_delete]);
         }
         else {
             let newCM = new ContactManager(name_cm.name);
             newCM.contacts = name_cm.contacts;
             newCM.deleteContact(+(nameContact.value));
             localStorage.setItem(newName.value, JSON.stringify(newCM));
-            text_delete.innerHTML = 'Successfully deleted';
-            text_delete.style.display = "";
+            text_delete.textContent = 'Successfully deleted';
+            display_on([text_delete]);
         }
     }
 }
@@ -163,14 +144,14 @@ function addSimilar() {
         table.style.display = "table";
         table1.addEventListener('click', e=> {
             try {
-             newContact_name.value = e.target.closest('td:first-child').innerHTML;
+             newContact_name.value = e.target.closest('td:first-child').textContent;
             } catch (error) {
             
             }
         });
         table1.addEventListener('click', e=> {
             try {
-                newContact_number.value = e.target.closest('td:last-child').innerHTML;
+                newContact_number.value = e.target.closest('td:last-child').textContent;
             } catch (error) {
             
             }
@@ -187,8 +168,21 @@ function replacer(el) {
 
 
 function refresh() {
-    table.innerHTML = '';
+    table.textContent = "";
     addSimilar();
 }
+
+function display_off (array) {
+    for (let i = 0; i < array.length; i++) {
+        array[i].style.display = "none";
+    }
+}
+
+function display_on (array) {
+    for (let i = 0; i < array.length; i++) {
+        array[i].style.display = "block";
+    }
+}
+
 
 

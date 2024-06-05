@@ -9,41 +9,43 @@
 <body>
     <h1 class="enter_name">Welcome to the contact manager</h1>
     <form class="form">
-        <label id="label-text" class="label">Enter your name</label>
         <div id="sign_in_text" class="sign_in_hello">
+            <label id="label-text" class="label">Enter your name</label>
             <input type="text" id="name" class="name_cm">
-            <input type="button" value="Sign in" onclick="sign_in()">
-            <input type="button" value="Create CM" onclick="createContactManager()">
+            <input id="sign" type="button" value="Sign in" onclick="sign_in()">
+            <input id="create" type="button" value="Create CM" onclick="createContactManager()">
         </div>
         <div id="sign_out" class="exit">
-            <input type="button" value="Sign out" onclick="sign_out()">
+            <input id="out" type="button" value="Sign out" onclick="sign_out()">
         </div>
         <div id="sign_in" class="welcome">
             
         </div>
-        <div id="block_addContact" class="addContact">
-            <input type="text" placeholder="Write a name" id="newContact_name">
-            <input type="text" placeholder="Write a number" id="newContact_number" oninput="replacer(this)">
-            <input type="button" style="margin-top: 5px;" value="Add the similar" onclick="addSimilar()" id="similar">
-            <input type="button" style="margin-top: 5px;" value="Refresh" onclick="refresh()">
-            <input style="margin-top: 5px;" type="button" value="Add contact" onclick="addContact()" id="createContact"> <p style="display: none;" id="text_successCreated">Contact successfully created</p>
+        <div id="main_info">
+            <div id="block_addContact" class="addContact">
+                <input type="text" placeholder="Write a name" id="newContact_name">
+                <input type="text" placeholder="Write a number" id="newContact_number" oninput="replacer(this)">
+                <input type="button" style="margin-top: 5px;" value="Add the similar" onclick="addSimilar()" id="similar">
+                <input type="button" style="margin-top: 5px;" value="Refresh" onclick="refresh()">
+                <input style="margin-top: 5px;" type="button" value="Add contact" onclick="addContact()" id="createContact"> <p style="display: none;" id="text_successCreated">Contact successfully created</p>
+            </div>
+            <table id="table" class="style_table">
+                
+            </table>
+            <div id="block_showContact" class="showContact">
+                <div class="deleteContact">
+                    <input type="text" placeholder="Serial number" id="nameContact" style="width: 92px;" oninput="replacer(this)">
+                    <input type="button" value="Delete contacts" onclick="deleteContacts()">
+                    <h3 id="text_delete" style="text-align: center;"></h3>
+                </div>
+                <input type="button" value="Show contacts" id="button_showContacts" onclick="showContact()" style="margin-bottom: 5px;">
+                <div class="yourContacts">
+                    <div></div>
+                    <ul id="text_yourContacts" style="display: grid;"></ul>
         </div>
-        <table id="table" class="style_table">
-        
-        </table>
-        <div id="block_showContact" class="showContact">
-            <div class="deleteContact">
-                <input type="text" placeholder="Serial number" id="nameContact" style="width: 92px;" oninput="replacer(this)">
-                <input type="button" value="Delete contacts" onclick="deleteContacts()">
-                <h3 id="text_delete" style="text-align: center;"></h3>
-            </div>
-            <input type="button" value="Show contacts" id="button_showContacts" onclick="showContact()" style="margin-bottom: 5px;">
-            <div class="yourContacts">
-                <div></div>
-                <ul id="text_yourContacts" style="display: grid;"></ul>
-            </div>
         </div>
             <script src="./CM.js"></script> 
+        </div>
     </form>
 </body>
 </html>

@@ -66,6 +66,7 @@ body {
 
 .sign_in_hello {
   text-align: center;
+  display: block;
 }
 
 .exit {
