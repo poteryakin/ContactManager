@@ -67,8 +67,9 @@ function sign_in() {
     }
     if (name_cm.name == newName.value) {
          text_hello.textContent = 'Hello, ' + newName.value;
-         display_off([sign_in_text, text_yourContacts]);
+         display_off([sign_in_text]);
         display_on([block_addContact, block_showContact, sign_out_text, text_hello]);
+        showContact();
     }
     else {
         text_hello.textContent = 'CM not found';
@@ -87,6 +88,9 @@ function addContact() {
         localStorage.setItem(newName.value, JSON.stringify(newCM));
         text_successCreated.style.display = "";
     }
+    showContact();
+    newContact_name.value = '';
+    newContact_number.value = '';
 }
 
 function showContact() {
@@ -124,6 +128,8 @@ function deleteContacts() {
             display_on([text_delete]);
         }
     }
+    showContact();
+    nameContact.value = '';
 }
 
 function addSimilar() {
